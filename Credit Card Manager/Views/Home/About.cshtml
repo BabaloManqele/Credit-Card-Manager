@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+
+<p>
+    <h3><strong>Intro</strong></h3>
+    We want to write a system that allows our admins to submit a bunch of credit card numbers
+    for validation. (Please read the guidelines below.)
+    <h3><strong>Requirements</strong></h3>
+    Build an ASP.Net MVC application that can do the following:
+    <ul>
+        <li>Allow the user to submit a valid credit card number.</li>
+        <li>
+            Make a configurable list of credit card providers(VISA, AMEX, MasterCard,
+            Discover).
+        </li>
+        <li>
+            Check which credit card provider(VISA, AMEX, MasterCard, Discover) has issued
+            the card and only allow cards to be captured that has the credit card provider in the
+            configurable list.
+        </li>
+        <li>If the card is valid and allowed – store it somewhere.</li>
+        <li>Do not capture the same valid card twice.</li>
+        <li>Display all the credit cards that have been successfully captured so far.</li>
+    </ul>
+</p>

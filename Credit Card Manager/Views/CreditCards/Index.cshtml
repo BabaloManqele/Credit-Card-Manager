@@ -1,0 +1,89 @@
+﻿@model Credit_Card_Manager.ViewModels.CreditCardIndexData
+
+@{
+    ViewBag.Title = "Credit Card Providers";
+}
+
+<h2>Credit Card Providers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.CreditCards)
+    {
+        string selectedRow = "";
+        if (item.ID == ViewBag.CreditCardID)
+        {
+            selectedRow = "success";
+        }
+        <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Select", "Index", new { id = item.ID }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |*@
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+@if (Model.Rules != null && Model.Rules.Count() > 0)
+{
+    <h3>Rules for the selected Credit Card</h3>
+    <p>
+        @Html.ActionLink("Create New", "Create", "Rules", new { id = ViewBag.CreditCardID }, null)
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Length
+            </th>
+            <th>
+                Prefix
+            </th>
+            <th>
+                SkipLuhnCheck
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Rules)
+        {
+            <tr>
+                <td>
+                    @item.Length
+                </td>
+                <td>
+                    @item.Prefix
+                </td>
+                <td>
+                    @item.SkipLuhnCheck
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Rules", new { id = item.ID }, null) |
+                    @Html.ActionLink("Details", "Details", "Rules", new { id = item.ID }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Rules", new { id = item.ID }, null)
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+@if(ViewBag.CreditCardID != null && (Model.Rules == null || Model.Rules.Count() == 0)) { 
+<h3>No Rules found for the selected Credit Card. Would you like to create new rule/s?</h3>
+<p>
+    @Html.ActionLink("Create New", "Create", "Rules", new { id = ViewBag.CreditCardID }, null)
+</p>
+
+}
