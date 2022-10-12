@@ -79,7 +79,7 @@ namespace Credit_Card_Manager.Controllers
         // GET: UserCards/Create
         public ActionResult Create()
         {
-            ViewBag.RandomCard = CreditCardFactory.RandomCardNumber(CardIssuer.AmericanExpress);
+            //ViewBag.RandomCard = CreditCardFactory.RandomCardNumber(CardIssuer.AmericanExpress);
             ViewBag.CreditCardID = new SelectList(db.CreditCards, "ID", "Name");
             return View();
         }
